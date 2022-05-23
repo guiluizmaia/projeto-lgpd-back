@@ -1,0 +1,222 @@
+openapi: '3.0.0'
+info:
+  title: Property Protection
+  description: API Documentation - Property Protection
+  version: 1.0.0 BETA
+servers:
+  - url: /
+    description: API Server
+schemes:
+  - https
+
+paths:
+  /health-check:
+    get:
+      tags:
+        - Health Check
+      summary: Consultar status da API
+      responses:
+        200:
+          description: OK
+  /clients:
+    get:
+      tags:
+        - Clients
+      summary: Trás todos os clientes cadastrados
+      responses:
+        200:
+          description: Lista de clientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+    post:
+      tags:
+        - Clients
+      summary: Inicia o cadastro de um cliente com os dados básicos
+      requestBody:
+        description: Dados básicos cliente
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/request/ClientBasicRequest'
+      responses:
+        201:
+          description: Cadastro Cliente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientBasic'
+    patch:
+      tags:
+        - Clients
+      summary: Atualiza o cliente junto as questões
+      requestBody:
+        description: Atualiza cliente
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        200:
+          description: Cadastro Cliente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        404:
+          description: Cliente não encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensagem de erro
+  /clients/{id}:
+    get:
+      tags:
+        - Clients
+      summary: Trás um cliente específico pelo id
+      parameters:
+        - name: id
+          in: path,
+          description: id do cliente,
+          required: true,
+          schema:
+            type: string
+      responses:
+        200:
+          description: Cliente pelo id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+    delete:
+      tags:
+        - Clients
+      summary: Deletar um cliente específico pelo id
+      parameters:
+        - name: id
+          in: path,
+          description: id do cliente,
+          required: true,
+          schema:
+            type: string
+      responses:
+        204:
+          description: Deletado
+components:
+  schemas:
+    Client:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Id gerado automáticamente pelo banco.
+        id:
+          type: string
+          description: Id gerado por nós
+        email:
+          type: string
+          description: Email do cliente
+        password:
+          type: string
+          description: Senha do cliente
+        name:
+          type: string
+          description: Nome do cliente
+        birthDay:
+          type: string
+          format: date-time
+          description: Aniversário do cliente
+        sex:
+          type: string
+          description: Sexo do cliente
+        document:
+          type: string
+          description: Documento do cliente
+        phone:
+          type: string
+          description: Phone do cliente
+        questions:
+          type: array
+          items:
+            type: object
+            properties:
+              question:
+                type: string
+                description: Pergunta
+              answer:
+                type: string
+                description: Resposta
+          description: Perguntas Complementares
+        result:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+          description: Resultado de acordo com as questões
+    ClientBasic:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Id gerado automáticamente pelo banco.
+        id:
+          type: string
+          description: Id gerado por nós
+        email:
+          type: string
+          description: Email do cliente
+        password:
+          type: string
+          description: Senha do cliente
+        name:
+          type: string
+          description: Nome do cliente
+        birthDay:
+          type: string
+          format: date-time
+          description: Aniversário do cliente
+        sex:
+          type: string
+          description: Sexo do cliente
+        document:
+          type: string
+          description: Documento do cliente
+        phone:
+          type: string
+          description: Phone do cliente
+
+  request:
+    ClientBasicRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email do cliente
+        password:
+          type: string
+          description: Senha do cliente
+        name:
+          type: string
+          description: Nome do cliente
+        birthDay:
+          type: string
+          format: date-time
+          description: Aniversário do cliente
+        sex:
+          type: string
+          description: Sexo do cliente
+        document:
+          type: string
+          description: Documento do cliente
+        phone:
+          type: string
+          description: Phone do cliente

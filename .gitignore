@@ -1,0 +1,23 @@
+**/node_modules
+
+dist
+
+.vscode/*
+
+package-lock.json
+mongo-volume
+# ormconfig.json
+
+.env
+
+!.gitkeep
+!.github/*
+
+.env
+
+**/coverage
+
+*.pem
+*.csv
+*.xlsx
+*.txt
