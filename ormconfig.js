@@ -4,5 +4,5 @@ module.exports = {
   port: Number(process.env.MONGO_PORT),
   database: process.env.MONGO_DATABASE,
   useUnifiedTopology: true,
-  entities: ['./src/modules/**/infra/typeorm/schemas/*.ts'],
+  entities: ['./dist/modules/**/infra/typeorm/schemas/*.js'],
 };

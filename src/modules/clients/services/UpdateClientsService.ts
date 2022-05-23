@@ -21,44 +21,46 @@ class UpdateClientsService {
       throw new AppError('Client not found', 404);
     }
 
-    if (client.name) {
-      client.name = criptografar(client.name);
+    if (clientUpdated.name) {
+      clientUpdated.name = criptografar(clientUpdated.name);
     }
 
-    if (client.sex) {
-      client.sex = criptografar(client.sex);
+    if (clientUpdated.sex) {
+      clientUpdated.sex = criptografar(clientUpdated.sex);
     }
 
-    if (client.genrer) {
-      client.genrer = criptografar(client.genrer);
+    if (clientUpdated.genrer) {
+      clientUpdated.genrer = criptografar(clientUpdated.genrer);
     }
 
-    if (client.document) {
-      client.document = criptografar(client.document);
+    if (clientUpdated.document) {
+      clientUpdated.document = criptografar(clientUpdated.document);
     }
 
-    if (client.rg) {
-      client.rg = criptografar(client.rg);
+    if (clientUpdated.rg) {
+      clientUpdated.rg = criptografar(clientUpdated.rg);
     }
 
-    if (client.address && client.address.cep) {
-      client.address.cep = criptografar(client.address.cep);
+    if (clientUpdated.address && clientUpdated.address.cep) {
+      clientUpdated.address.cep = criptografar(clientUpdated.address.cep);
     }
 
-    if (client.address && client.address.street) {
-      client.address.street = criptografar(client.address.street);
+    if (clientUpdated.address && clientUpdated.address.street) {
+      clientUpdated.address.street = criptografar(clientUpdated.address.street);
     }
 
-    if (client.address && client.address.district) {
-      client.address.district = criptografar(client.address.district);
+    if (clientUpdated.address && clientUpdated.address.district) {
+      clientUpdated.address.district = criptografar(
+        clientUpdated.address.district,
+      );
     }
 
-    if (client.address && client.address.city) {
-      client.address.city = criptografar(client.address.city);
+    if (clientUpdated.address && clientUpdated.address.city) {
+      clientUpdated.address.city = criptografar(clientUpdated.address.city);
     }
 
-    if (client.address && client.address.state) {
-      client.address.state = criptografar(client.address.state);
+    if (clientUpdated.address && clientUpdated.address.state) {
+      clientUpdated.address.state = criptografar(clientUpdated.address.state);
     }
 
     Object.assign(client, clientUpdated);
