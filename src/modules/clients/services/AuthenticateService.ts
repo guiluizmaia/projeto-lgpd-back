@@ -1,7 +1,7 @@
 import AppError from '@infra/http/errors/AppError';
 import auth from '@configs/auth';
 import { inject, injectable } from 'tsyringe';
-
+import IHistoricClientsRepository from '../repositories/IHistoricClientsRepository';
 import IClientsRepository from '../repositories/IClientsRepository';
 import { sign } from 'jsonwebtoken';
 import ICryptHash from '@infra/utils/CryptHash/ICryptHash';
@@ -26,6 +26,8 @@ class AuthenticateService {
   constructor(
     @inject('ClientsRepository')
     private clientsRepository: IClientsRepository,
+    @inject('HistoricClientsRepository')
+    private historicClientsRepository: IHistoricClientsRepository,
     @inject('CryptHash')
     private cryptHash: ICryptHash,
   ) {}
@@ -93,6 +95,12 @@ class AuthenticateService {
       token,
       user,
     };
+    
+    await this.historicClientsRepository.create({
+      type: 'LOGIN',
+      id_client: user.id,
+      client: user,
+    });
 
     return tokenReturn;
   }
