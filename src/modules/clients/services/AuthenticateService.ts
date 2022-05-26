@@ -5,6 +5,7 @@ import { inject, injectable } from 'tsyringe';
 import IClientsRepository from '../repositories/IClientsRepository';
 import { sign } from 'jsonwebtoken';
 import ICryptHash from '@infra/utils/CryptHash/ICryptHash';
+import { descriptografar } from '@infra/utils/cryptografar';
 
 interface IRequest {
   email: string;
@@ -47,6 +48,46 @@ class AuthenticateService {
       subject: user.id,
       expiresIn: expiresIn,
     });
+
+    if (user.name) {
+      user.name = descriptografar(user.name);
+    }
+
+    if (user.sex) {
+      user.sex = descriptografar(user.sex);
+    }
+
+    if (user.genrer) {
+      user.genrer = descriptografar(user.genrer);
+    }
+
+    if (user.document) {
+      user.document = descriptografar(user.document);
+    }
+
+    if (user.rg) {
+      user.rg = descriptografar(user.rg);
+    }
+
+    if (user.address && user.address.cep) {
+      user.address.cep = descriptografar(user.address.cep);
+    }
+
+    if (user.address && user.address.street) {
+      user.address.street = descriptografar(user.address.street);
+    }
+
+    if (user.address && user.address.district) {
+      user.address.district = descriptografar(user.address.district);
+    }
+
+    if (user.address && user.address.city) {
+      user.address.city = descriptografar(user.address.city);
+    }
+
+    if (user.address && user.address.state) {
+      user.address.state = descriptografar(user.address.state);
+    }
 
     const tokenReturn: IResponse = {
       token,
