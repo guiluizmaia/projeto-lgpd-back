@@ -23,6 +23,14 @@ class CreateClientsWithBasicsService {
     if (data.name) {
       data.name = criptografar(data.name);
     }
+    
+    if (data.birthDay) {
+      data.birthDay = criptografar(data.birthDay);
+    }
+    
+    if (data.phone) {
+      data.phone = criptografar(data.phone);
+    }
 
     if (data.sex) {
       data.sex = criptografar(data.sex);
