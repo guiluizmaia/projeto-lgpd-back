@@ -18,7 +18,7 @@ class CreateClientsWithBasicsService {
   ) {}
 
   public async execute(data: IClientsBasicDtos): Promise<Clients> {
-    data.password = await this.cryptHash.create(descriptografar(data.password));
+    data.password = await this.cryptHash.create(data.password);
 
     const created = await this.clientsRepository.create(data);
     this.historicClientsRepository.create({
