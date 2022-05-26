@@ -50,11 +50,7 @@ class AuthenticateService {
 
     const tokenReturn: IResponse = {
       token,
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-      },
+      user,
     };
 
     return tokenReturn;
