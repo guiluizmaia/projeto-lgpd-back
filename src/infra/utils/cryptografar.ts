@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 const DADOS_CRIPTOGRAFAR = {
-  algoritmo: 'aes256',
+  algoritmo: 'aes192',
   segredo: 'chaves',
 };
 
