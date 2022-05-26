@@ -4,7 +4,7 @@ const pwd = "chave"
  
 export function criptografar(text) {
  const cipher = crypto.createCipher('aes-256-cbc', "chave");
- const cryted = cipher.update(String(text), 'utf8', 'hex')
+ const crypted = cipher.update(String(text), 'utf8', 'hex')
  return crypted
 }
  
